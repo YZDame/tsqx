@@ -1,0 +1,13 @@
+# Fact 5 风格示意
+A = dir 110
+B = dir 210
+C = dir 330
+I = incenter A B C
+L 230 = dir 270
+IA 315 = (2*L-I)
+
+A--B--C--cycle / 0.1 lightcyan / gray
+B--L--C--cycle 
+unitcircle / blue
+CP L I / 0.15 lightgreen / darkgreen
+A--I / red

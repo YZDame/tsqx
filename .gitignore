@@ -1,4 +1,36 @@
 dist/
 __pycache__/
-*.asy
-*.pdf
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.xdv
+
+# Local/private workspace (do not publish)
+personal/
+Personal/
+0307/
+GeoSlang/
+
+# Local environments and caches
+.conda/
+.venv/
+venv/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+.DS_Store
+.vscode/
+
+# LaTeX/Asymptote intermediates under examples/
+examples/__latexindent_temp_*.tex
+examples/indent.log
+examples/tsqx_example-*.asy
+examples/tsqx_example-*.pre
+examples/tsqx_example-*.tex
+examples/tsqx_example-*_0.pdf
+examples/tsqx_example.pre

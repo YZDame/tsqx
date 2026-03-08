@@ -1,60 +1,72 @@
-# TSQX
+# TSQX（中文增强版）
 
-[Asymptote](https://asymptote.sourceforge.io/) preprocessor
-for Euclidean geometry diagrams
-descended from the older [TSQ](https://github.com/vEnhance/dotfiles/blob/783dbb40628ba92d76ff51c228789b66522631d2/py-scripts/tsq.py).
+本仓库基于上游 [vEnhance/tsqx](https://github.com/vEnhance/tsqx) 维护，定位不是“完全同步镜像”，而是：
 
-## Installation
+- 保留 TSQX 核心代码能力
+- 增加中文使用说明和中文示例
+- 提供更适合中文教学/自学场景的仓库结构
 
-`pip install tsqx`
+英文说明请看 [README_EN.md](README_EN.md)。
 
-Or, Arch Linux users can use [AUR](https://aur.archlinux.org/packages/tsqx).
+## 仓库定位
 
-## Syntax highlighting
+上游 TSQX 主要提供核心工具与英文文档；本仓库在此基础上补充：
 
-- [NeoVim TreeSitter syntax file](https://github.com/extouchtriangle/tree-sitter-tsqx)
-- [Older Vim syntax file](https://github.com/vEnhance/dotfiles/blob/main/vim/after/syntax/tsqx.vim) (using regular expressions)
+- 中文主文档（以本 README 为入口）
+- LaTeX 中文说明书源码：[examples/tsqx_example.tex](examples/tsqx_example.tex)
+- 已生成的示例 PDF：[examples/tsqx_example.pdf](examples/tsqx_example.pdf)
+- TSQX 示例源码：`examples/figures/`
+- 生成图像与中间产物：`examples/figures/`
 
-## Documentation
+## 安装
 
-See [Wiki](https://github.com/vEnhance/tsqx/wiki/Documentation).
-
-## Example code
-
-```
-~triangle A B C
-D ;= foot A B C
-E := midpoint A--B
-F' N = (rotate -30 E)(extension A (foot A B C) C E)
-
-circumcircle A B C / 0.2 lightgray /
-A--B--C--cycle
-A--D
-B--F' / dashed blue
+```bash
+pip install tsqx
 ```
 
-Generated code:
+Arch Linux 用户可使用 [AUR](https://aur.archlinux.org/packages/tsqx)。
 
-```
-pair A = dir(110);
-pair B = dir(210);
-pair C = dir(330);
-pair D = foot(A, B, C);
-pair E = midpoint(A--B);
-pair F_prime = rotate(-30, E)*extension(A, foot(A, B, C), C, E);
+## 快速使用
 
-filldraw(circumcircle(A, B, C), opacity(0.2)+lightgray, defaultpen);
-draw(A--B--C--cycle);
-draw(A--D);
-draw(B--F_prime, dashed+blue);
-
-dot("$A$", A, dir(A));
-dot("$B$", B, dir(B));
-dot("$C$", C, dir(C));
-label("$D$", D, dir(D));
-dot("$F'$", F_prime, plain.N);
+```bash
+tsqx -p < examples/figures/fig1.tsqx > examples/figures/fig1.asy
+asy examples/figures/fig1.asy
 ```
 
-Which makes the diagram:
+如果你把 `examples/` 当成独立 LaTeX 项目使用，可直接：
 
-![Diagram](sample.png)
+```bash
+cd examples
+latexmk -pdfxe tsqx_example.tex
+```
+
+如果要批量生成：
+
+```bash
+for f in examples/figures/*.tsqx; do
+  name="$(basename "${f%.tsqx}")"
+  tsqx -p < "$f" > "examples/figures/$name.asy"
+  asy "examples/figures/$name.asy"
+done
+```
+
+## 项目结构
+
+```text
+tsqx/
+  tsqx/                 # TSQX Python 源码
+  tests/                # 测试
+  examples/             # 示例手册目录（LaTeX + TSQX + ASY/PDF）
+    figures/            # 示例输入（.tsqx）+ 生成图像（.pdf）+ 中间 ASY
+  personal/             # 个人本地草稿（已在 .gitignore 中忽略）
+```
+
+## 语法高亮
+
+- NeoVim TreeSitter: <https://github.com/extouchtriangle/tree-sitter-tsqx>
+- Vim 旧语法文件: <https://github.com/vEnhance/dotfiles/blob/main/vim/after/syntax/tsqx.vim>
+
+## 与上游关系
+
+- 上游仓库：<https://github.com/vEnhance/tsqx>
+- 本仓库：以中文文档和中文示例为主的衍生维护版本

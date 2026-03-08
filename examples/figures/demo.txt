@@ -1,0 +1,8 @@
+# 用 .txt 也完全可以！
+A = dir 110
+B = dir 210
+C = dir 330
+O = circumcenter A B C
+
+A--B--C--cycle / 0.1 lightcyan / blue
+circumcircle A B C / 0.15 lightyellow / red

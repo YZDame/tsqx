@@ -1,0 +1,14 @@
+# 垂心与垂足三角形
+A = dir 95
+B = dir 215
+C = dir 330
+H = orthocenter A B C
+D = foot H B C
+E = foot H C A
+F = foot H A B
+
+A--B--C--cycle / 0.08 lightyellow / blue
+D--E--F--cycle / 0.15 lightcyan / red
+A--D / gray
+B--E / gray
+C--F / gray

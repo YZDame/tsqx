@@ -1,0 +1,11 @@
+# 基础三角形 + 内心 + 内切圆
+A = dir 110
+B = dir 210
+C = dir 330
+I 45 = incenter A B C
+
+A--B--C--cycle / 0.12 lightcyan / blue
+incircle A B C / 0.15 lightgreen / darkgreen
+A--I / red
+B--I / red
+C--I / red
