@@ -1,22 +1,25 @@
 # TSQX（中文增强版）
 
-本仓库基于上游 [vEnhance/tsqx](https://github.com/vEnhance/tsqx) 维护，定位不是“完全同步镜像”，而是：
+本仓库基于上游 [vEnhance/tsqx](https://github.com/vEnhance/tsqx) 维护，但项目定位更偏向“文档 + 实例”：
 
-- 保留 TSQX 核心代码能力
-- 增加中文使用说明和中文示例
-- 提供更适合中文教学/自学场景的仓库结构
+- 以中文教程文档为主入口
+- 提供可直接运行的 examples 示例工程
+- 保留 TSQX 核心代码，便于对照上游能力
 
 英文说明请看 [README_EN.md](README_EN.md)。
 
+## 先看这份介绍文档
+
+- 中文 PDF 手册（推荐先读）：[examples/tsqx_example.pdf](examples/tsqx_example.pdf)
+- 对应 LaTeX 源码：[examples/tsqx_example.tex](examples/tsqx_example.tex)
+
 ## 仓库定位
 
-上游 TSQX 主要提供核心工具与英文文档；本仓库在此基础上补充：
+上游 TSQX 主要提供核心工具与英文文档；本仓库更强调：
 
-- 中文主文档（以本 README 为入口）
-- LaTeX 中文说明书源码：[examples/tsqx_example.tex](examples/tsqx_example.tex)
-- 已生成的示例 PDF：[examples/tsqx_example.pdf](examples/tsqx_example.pdf)
-- TSQX 示例源码：`examples/figures/`
-- 生成图像与中间产物：`examples/figures/`
+- 中文教程与手册化内容
+- examples 目录的一体化演示（`.tsqx -> .asy -> .pdf` 与 LaTeX 集成）
+- 开箱即用的示例文件组织（前提是本机已安装必要环境）
 
 ## 安装
 
@@ -27,6 +30,8 @@ pip install tsqx
 Arch Linux 用户可使用 [AUR](https://aur.archlinux.org/packages/tsqx)。
 
 ## 快速使用
+
+`examples/` 可以直接作为示例工程使用，但你仍需先具备基础环境：`tsqx`、`asy`、`xelatex/latexmk`。
 
 ```bash
 tsqx -p < examples/figures/fig1.tsqx > examples/figures/fig1.asy
